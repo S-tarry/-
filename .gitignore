@@ -1,0 +1,13 @@
+# Python-specific files
+*.pyc
+__pycache__/
+
+# Django-specific files
+*.log
+*.pot
+*.mo
+*.sqlite3
+db.sqlite3
+
+# Virtual environment
+venv/
