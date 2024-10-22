@@ -1,1 +1,1 @@
-from .payment import Payment
+from payments.models.payment import Payment

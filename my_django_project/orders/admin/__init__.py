@@ -1,1 +1,1 @@
-from .order import OrderAdmin
+from orders.admin.order import OrderAdmin

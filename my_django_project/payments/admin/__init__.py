@@ -1,1 +1,1 @@
-from .payment import PaymentAdmin
+from payments.admin.payment import PaymentAdmin

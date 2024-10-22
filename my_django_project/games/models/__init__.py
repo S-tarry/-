@@ -1,1 +1,1 @@
-from .game import Game
+from games.models.game import Game

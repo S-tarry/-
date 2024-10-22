@@ -1,1 +1,1 @@
-from .game import GameAdmin
+from games.admin.game import GameAdmin
