@@ -16,18 +16,19 @@ Including another URLconf
 """
 
 from django.urls import path, include
-from django.contrib.auth.models import User
+# змінено з "from django.contrib.auth.models import User" на "from users.models.user import CustomUser" 
+from users.models.user import CustomUser
 from rest_framework import routers, serializers, viewsets
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['url', 'username', 'email', 'is_staff']
 
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
 # Routers provide an easy way of automatically determining the URL conf.
