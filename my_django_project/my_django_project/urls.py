@@ -16,9 +16,11 @@ Including another URLconf
 """
 
 from django.urls import path, include
+from django.contrib import admin
 # змінено з "from django.contrib.auth.models import User" на "from users.models.user import CustomUser" 
 from users.models.user import CustomUser
 from rest_framework import routers, serializers, viewsets
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -37,7 +39,19 @@ router.register(r'users', UserViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
+
 urlpatterns = [
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    
+    path('api/', include('games.urls')),
+    path('api/', include('orders.urls')),
+    path('api/', include('payments.urls')),
+    path('api/', include('posts.urls')),
+    path('api/', include('users.urls')),
+
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/schema/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
 ]
+
